@@ -12,23 +12,12 @@ async def add_brone(bron: AddBron):
 async def get_brons():
     return {'brons': get_all_brons()}
 
-@router.delete('/delete')
-async def delete_brone(bron: DelBrone):
-    status = delete_bron_by_id(bron.bid)
-
-    if status:
-        result = {"status": 400, 'details': "Not found brone"}
-    else:
-        result = {"status": 200}
-    return result
-
 @router.get('/active')
 async def get_active_brons():
     return {"brons": get_all_active_brone()}
 
 @router.delete('/delete')
 async def delete_brone(bron: DelBrone):
-    return delete_bron_by_id(
-        bron.bid
-    )
+    delete_bron_by_id(bron.bid)
+    return {'status': 200}
 

@@ -11,21 +11,28 @@ async def http_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(
         status_code=exc.status_code,
         content={
-            "success": False,
+            "status": 400,
             "error": exc.detail,
-            "path": request.url.path,
-            "method": request.method
         }
     )
+
+@app.exception_handler(ValueError)
+async def all_excepts(request: Request, exc: ValueError):
+    return JSONResponse(
+        status_code=400,
+        content={
+            "status": 400,
+            "error": exc.args[0],
+        }
+    )
+
 @app.exception_handler(Exception)
 async def all_excepts(request: Request, exc: Exception):
     return JSONResponse(
         status_code=500,
         content={
-            "success": False,
-            "error": "Внутренняя ошибка сервера",
-            "message": "Что-то пошло не так. Попробуйте позже.",
-            "request_id": getattr(request.state, "request_id", "unknown")
+            "status": 500,
+            "error": "Server error",
         }
     )
 

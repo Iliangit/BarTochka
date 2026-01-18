@@ -1,7 +1,6 @@
 from app.api.db.base import Base
 from sqlalchemy import String, Column, DateTime, Integer
 
-
 class BronDB(Base):
     __tablename__ = 'bron'
 

@@ -1,12 +1,17 @@
 from fastapi import APIRouter
 <<<<<<< Updated upstream
 
+<<<<<<< HEAD
 from app.api.crud.bron import create_bron, get_all_brons
 from app.shemas.brone import AddBron
 =======
 from app.api.crud.bron import create_bron, get_all_brons, delete_bron_by_id, get_all_active_brone
 from app.shemas.brone import AddBron, DelBrone
 >>>>>>> Stashed changes
+=======
+from app.api.crud.bron import create_bron, get_all_brons, delete_bron_by_id
+from app.shemas.brone import AddBron, DelBrone
+>>>>>>> deletefun
 
 router = APIRouter()
 
@@ -16,6 +21,7 @@ async def add_brone(bron: AddBron):
 
 @router.get("/")
 async def get_brons():
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     return get_all_brons()
 =======
@@ -35,3 +41,12 @@ async def delete_brone(bron: DelBrone):
 async def get_active_brons():
     return {"brons": get_all_active_brone()}
 >>>>>>> Stashed changes
+=======
+    return get_all_brons()
+
+@router.delete('/delete')
+async def delete_brone(bron: DelBrone):
+    return delete_bron_by_id(
+        bron.bid
+    )
+>>>>>>> deletefun

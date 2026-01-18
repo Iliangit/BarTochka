@@ -6,3 +6,6 @@ class AddBron(BaseModel):
     date: datetime
     phone: str = Field(..., pattern=r"^\+?[1-9]\d{1,14}$")
     person: int
+
+class DelBrone(BaseModel):
+    bid: int

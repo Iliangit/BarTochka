@@ -10,6 +10,10 @@ def create_bron(bron: AddBron):
                            person=bron.person))
         return session.info
 
+def get_bron_by_id(bid: int) -> BronDB:
+    with safe_session() as session:
+        bron = session.query(BronDB).filter(BronDB.id == bid).first()
+        return bron
 
 def get_all_brons():
     with safe_session() as session:
@@ -24,3 +28,16 @@ def get_all_brons():
                 'person': bron.person
             })
         return brons
+
+def delete_bron_by_id(bid: int):
+    with safe_session() as session:
+        try:
+
+            session.delete(get_bron_by_id(bid))
+
+            status = {"status": 200}
+        except Exception as ex:
+
+            status = {"status": 400, 'details': "Not found brone"}
+        finally:
+            return status

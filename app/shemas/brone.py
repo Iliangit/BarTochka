@@ -6,3 +6,6 @@ class AddBron(BaseModel):
     date: datetime
     phone: str
     person: int
+
+class DelBrone(BaseModel):
+    bid: int

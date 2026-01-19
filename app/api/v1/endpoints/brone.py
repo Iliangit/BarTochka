@@ -6,6 +6,7 @@ router = APIRouter()
 
 @router.post("/add")
 async def add_brone(bron: AddBron):
+
     return {'id': create_bron(bron)}
 
 @router.get("/")

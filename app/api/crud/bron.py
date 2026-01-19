@@ -3,18 +3,19 @@ from app.api.db.base import safe_session
 from app.api.db.models import BronDB
 from app.shemas.brone import AddBron
 
+# Сделать таблицу самих столов, которые будут связываться с баром и при брони надо смотреть есть ли в таком баре такой столик
 def create_bron(bron: AddBron):
     with safe_session() as session:
         bron_db = BronDB(name=bron.name,
                date=bron.date,
                phone=bron.phone,
-               person=bron.person)
+               person=bron.person,
+               bar_id=bron.bar_id)
 
         session.add(bron_db)
 
         session.flush()
         return bron_db.id
-
 
 def get_all_active_brone():
     with safe_session() as session:
@@ -26,7 +27,8 @@ def get_all_active_brone():
                     'name': bron.name,
                     'date': bron.date,
                     'phone': bron.phone,
-                    'person': bron.person
+                    'person': bron.person,
+                    'bar_id': bron.bar_id
                 })
         return brons
 
@@ -44,7 +46,8 @@ def get_all_brons():
                 'name': bron.name,
                 'date': bron.date,
                 'phone': bron.phone,
-                'person': bron.person
+                'person': bron.person,
+                'bar_id': bron.bar_id
             })
 
         return brons

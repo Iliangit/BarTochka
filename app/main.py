@@ -2,7 +2,8 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 import uvicorn
 from api.v1.router import api_router as router
-from app.api.db.base import Base, engine
+from app.api.db.base import Base, engine, safe_session
+from app.api.db.models import BronDB
 
 app = FastAPI()
 
